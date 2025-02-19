@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,6 +25,7 @@ export const metadata: Metadata = {
   description: "A modern social media application powered by Next.js",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +35,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider
+        <Analytics />
+        <SpeedInsights />
+
+        <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
