@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   description: "A modern social media application powered by Next.js",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,9 +32,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-       
-
-        <ThemeProvider
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
@@ -43,9 +40,8 @@ export default function RootLayout({
           >
             <div className="min-h-screen">
               <Navbar />
-
               <main className="py-8">
-                {/* container to center the content */}
+                {/* Container to center the content */}
                 <div className="max-w-7xl mx-auto px-4">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <div className="hidden lg:block lg:col-span-3">
