@@ -1,3 +1,4 @@
+// components/MobileNavbar.tsx
 "use client";
 
 import {
@@ -12,14 +13,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
-import { useAuth, SignInButton, SignOutButton } from "@clerk/nextjs";
+import { useClerk, SignInButton, SignOutButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
 function MobileNavbar() {
+  const { openSignIn } = useClerk();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { isSignedIn } = useAuth();
   const { theme, setTheme } = useTheme();
+  const { isSignedIn } = useClerk();
 
   return (
     <div className="flex md:hidden items-center space-x-2">
@@ -74,11 +76,16 @@ function MobileNavbar() {
                 </SignOutButton>
               </>
             ) : (
-              <SignInButton mode="modal">
-                <Button variant="default" className="w-full">
-                  Sign In
-                </Button>
-              </SignInButton>
+              <Button
+                variant="default"
+                className="w-full"
+                onClick={() => {
+                  openSignIn();
+                  setShowMobileMenu(false);
+                }}
+              >
+                Sign In
+              </Button>
             )}
           </nav>
         </SheetContent>
